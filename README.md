@@ -38,6 +38,8 @@ The cashier requires and looks the same as the original GitHub `/login/oauth` AP
 The most notable difference is, that you must ommit the fields `client_id` and `client_secret`.
 These are required by github but cashier will add them from its config, and override the values passed in.
 
+> *Note:* To aquire the `client_id` and `client_secret` visit: https://github.com/settings/applications/new
+
 ## Supported endpoints
 - *GET* [/login/oauth/authorize](https://developer.github.com/v3/oauth/#1-redirect-users-to-request-github-access)
 - *POST* [/login/oauth/access_token](https://developer.github.com/v3/oauth/#2-github-redirects-back-to-your-site)
