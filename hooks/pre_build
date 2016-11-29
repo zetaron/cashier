@@ -1,0 +1,16 @@
+#!/bin/bash
+set -ex
+
+echo "=> Installing build dependencies"
+docker run --rm -v "$PWD:/usr/src/code" zetaron/trash:0.2.5
+
+echo "=> Building binary"
+docker run --rm -v "$PWD:/usr/src/cashier" -w "/usr/src/cashier" golang:1.7.3-alpine \
+    sh -c "go-wrapper download \
+       && go-wrapper install \
+       && go build -v"
+
+echo "=> Adding label-schema.org labels"
+echo "LABEL org.label-schema.build-data=\"$(date --rfc-3339=seconds)\" \
+            org.label-schema.vcs-ref=\"${SOURCE_COMMIT}\" \
+            org.label-schema.version=\"${DOCKER_TAG}\"" >> Dockerfile

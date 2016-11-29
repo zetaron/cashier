@@ -1,0 +1,25 @@
+#!/bin/sh
+
+while true; do
+    read -p "Really tear down the deployment?" yn_teardown
+    case $yn_teardown in
+        [Yy]* )
+            docker service rm cashier
+            break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+while true; do
+    read -p "Do you want to keep the secret volumes?" yn_keep_secrets
+    case $yn_keep_secrets in
+        [Yy]* ) break;;
+        [Nn]* )
+            docker volume rm cashier-secrets
+            break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+

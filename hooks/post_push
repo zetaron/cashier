@@ -1,0 +1,6 @@
+#!/bin/bash
+set -ex
+
+echo "=> Tagging $IMAGE_NAME with the commit ID"
+docker tag $IMAGE_NAME $DOCKER_REPO:$SOURCE_COMMIT
+docker push $DOCKER_REPO:$SOURCE_COMMIT
