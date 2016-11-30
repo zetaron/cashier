@@ -4,7 +4,7 @@ MAINTAINER Fabian Stegemann
 LABEL org.label-schema.schema-version 1.0 \
       org.label-schema.name="cashier" \
       org.label-schema.description="cashier - A GitHub Authentication Gateway targeted at client only Web Applications" \
-      org.label-schema.usage="/usr/share/doc/cashier/README.md"
+      org.label-schema.usage="/usr/share/doc/cashier/README.md" \
       org.label-schema.url="https://github.com/cashier" \
       org.label-schema.vcs-url="https://github.com/zetaron/cashier" \
 
