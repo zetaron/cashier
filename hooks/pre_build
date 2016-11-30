@@ -3,22 +3,11 @@ set -ex
 
 echo "=> Installing build dependencies"
 mkdir -p $HOME/.trash-cache
-docker run \
-       --rm \
-       --user `id -u $USER`:`id -g $USER` \
-       -v "$PWD:/usr/src/code" \
-       -v $HOME/.trash-cache:/.trash-cache \
-       zetaron/trash:0.2.5
+docker run --rm --user `id -u $USER`:`id -g $USER` -v "$PWD:/usr/src/code" -v $HOME/.trash-cache:/.trash-cache zetaron/trash:0.2.5
 
 echo "=> Building binary"
-docker run \
-       --rm \
-       -v "$PWD:/usr/src/cashier" \
-       -w "/usr/src/cashier" \
-       golang:1.7.3-alpine \
-       sh -c "go-wrapper download \
-             && go-wrapper install \
-             && go build -v"
+docker run --rm --user `id -u $USER`:`id -g $USER` -v "$PWD:/go/src/github.com/zetaron/cashier" -w "/go/src/github.com/zetaron/cashier" golang:1.7.3-alpine \
+       go build -v
 
 echo "=> Adding label-schema.org labels"
 echo "LABEL org.label-schema.build-data=\"$(date --rfc-3339=seconds)\" \
