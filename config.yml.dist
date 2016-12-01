@@ -1,6 +1,0 @@
-client_id: ''
-client_secret: ''
-allowed_origin: '*'
-port: 80
-access_token_uri: 'https://github.com/login/oauth/access_token'
-authorization_uri: 'https://github.com/login/oauth/authorize'

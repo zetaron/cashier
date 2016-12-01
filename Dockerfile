@@ -14,6 +14,5 @@ ENTRYPOINT ["/usr/bin/secret-wrapper", "/usr/bin/cashier"]
 
 COPY secret-wrapper /usr/bin/secret-wrapper
 COPY README.md /usr/share/doc/cashier/README.md
-COPY config.yml.dist /etc/cashier/config.yml
 COPY cashier /usr/bin/cashier
 

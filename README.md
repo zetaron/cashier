@@ -3,6 +3,12 @@ Just passing through, never store.
 
 > The cashier is supposed to be hosted in a protected environment you can trust.
 
+The cashier requires and looks the same as the original GitHub `/login/oauth` API endpoints.
+The most notable difference is, that you must ommit the fields `client_id` and `client_secret`.
+These are required by github but cashier will add them from its config, and override the values passed in.
+
+> *Note:* To aquire the `client_id` and `client_secret` visit: https://github.com/settings/applications/new
+
 ## Using
 With `docker` (recomended for development)
 ```shell
@@ -23,22 +29,6 @@ Using Environment Variables:
 - **ACCESS_TOKEN_URI** [default=https://github.com/login/oauth/access_token]
 - **AUTHORIZATION_URI** [deault=https://github.com/login/oauth/authorize]
 - **ALLOWED_ORIGIN** [default=*]
-
-Using a file: config.yml
-```yaml
-client_id: ''
-client_secret: ''
-allowed_origin: *
-access_token_uri: https://github.com/login/oauth/access_token
-authorization_uri: https://github.com/login/oauth/authorize
-port: 80
-```
-
-The cashier requires and looks the same as the original GitHub `/login/oauth` API endpoints.
-The most notable difference is, that you must ommit the fields `client_id` and `client_secret`.
-These are required by github but cashier will add them from its config, and override the values passed in.
-
-> *Note:* To aquire the `client_id` and `client_secret` visit: https://github.com/settings/applications/new
 
 ## Supported endpoints
 - *GET* [/login/oauth/authorize](https://developer.github.com/v3/oauth/#1-redirect-users-to-request-github-access)

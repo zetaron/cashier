@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  cashier:
+    build:
+      context: .
+      dockerfile: Dockerfile.onbuild
+    env_file:
+      - ./secrets.env
+    labels:
+      - "dns.service=cashier"
+      - "dns.tld=fs.tudock-stage.de"
