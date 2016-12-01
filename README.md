@@ -10,9 +10,12 @@ These are required by github but cashier will add them from its config, and over
 > *Note:* To aquire the `client_id` and `client_secret` visit: https://github.com/settings/applications/new
 
 ## Using
-With `docker` (recomended for development)
+With `docker-compose` (recomended for development)
 ```shell
-docker run -e CLIENT_ID=XXX -e CLIENT_SECRET=XXX -p 80:80 zetaron/cashier
+touch secrets.env
+# edit the secrets.env to contain your configuration
+
+docker-compose up
 ```
 
 With `docker swarm` (recomended for production)
