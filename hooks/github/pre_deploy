@@ -1,4 +1,4 @@
 #!/bin/sh
 
 export CASHIER_VERSION
-CASHIER_VERSION=$SHA
+CASHIER_VERSION=$(echo $DEPLOYMENT_EVENT | jq '.deployment.ref' | tr -d '"')
