@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   deploy:
-    image: zetaron/github-deployment-worker:1.0.0
+    image: zetaron/github-hook-deployment-worker:1.0.0
     volumes:
       - secrets:/var/cache/secrets
       - cache:/var/cache/deployment
