@@ -1,16 +1,16 @@
-version: '2'
+version: '2.1'
 
 services:
   deploy:
     image: zetaron/github-deployment-worker:1.0.0
     volumes:
-      - secrets:/var/secrets
+      - secrets:/var/cache/secrets
       - cache:/var/cache/deployment
 
 volumes:
   secrets:
     external:
-      name: $SECRETS_VOLUME_NAME
+      name: ${SECRET_VOLUME_NAME:-cashier-production-secrets}
   cache:
     external:
       name: $DEPLOYMENT_CACHE_VOLUME_NAME

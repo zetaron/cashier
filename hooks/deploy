@@ -6,19 +6,24 @@ DNSNAME=${CASHIER_DNSNAME:-cashier.zetaron.de}
 CASHIER_VERSION=${CASHIER_VERSION:-1.0.0}
 CASHIER_REPLICAS=${CASHIER_REPLICAS:-1}
 SCHEDULE_ONTO_NODE=${SCHEDULE_ONTO_NODE:-"cluster-node-1"}
+CASHIER_SECRET_VOLUME_NAME="cashier-${DEPLOYMENT_ENVIRONMENT}-secrets"
 
 if [ "$(docker volume ls -q | grep "cashier-secrets")" == "" ]
 then
     docker volume create \
-           --name cashier-secrets
+           --name ${CASHIER_SECRET_VOLUME_NAME}
 fi
+
+# Backup current configuration for the next run
+echo ${CASHIER_DNSNAME} > /var/cache/secrets/CASHIER_DNSNAME
+echo ${CASHIER_REPLICAS} > /var/cache/secrets/CASHIER_REPLICAS
 
 if [ "$(docker service ls -q --filter name=cashier)" == "" ]
 then
     docker service create \
            --name cashier \
            --network frontends \
-           --mount type=volume,source=cashier-secrets,destination=/var/cache/secrets \
+           --mount type=volume,source=${CASHIER_SECRET_VOLUME_NAME},destination=/var/cache/secrets \
            --replicas $CASHIER_REPLICAS \
            --label ingress=true \
            --label ingress.dnsname=$DNSNAME \
