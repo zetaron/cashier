@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export CASHIER_VERSION
+CASHIER_VERSION=$SHA
